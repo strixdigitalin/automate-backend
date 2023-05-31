@@ -107,6 +107,12 @@ const updateUserDetails = async function (req, res) {
         coordinates: [parseFloat(req.body.long), parseFloat(req.body.lat)],
       };
     }
+    if (req.body.d_lat && req.body.d_long) {
+      userDetails.destination = {
+        type: "Point",
+        coordinates: [parseFloat(req.body.d_long), parseFloat(req.body.d_lat)],
+      };
+    }
     console.log(userDetails, "<<<this is userDetais");
     let updateProfileDetails = await User.findOneAndUpdate(
       { _id: userId },
