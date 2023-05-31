@@ -27,13 +27,14 @@ const getUserDetails = async function (req, res) {
             distanceField: "dist.calculated",
             includeLocs: "dist.location",
             spherical: true,
+            key: "location",
             //  maxDistance: 1000,
           },
         },
         {
           $match: {
-            readyToTravel: true,
-            travelTo: travelTo,
+            readyToTravel: readyToTravel,
+            // travelTo: travelTo,
           },
         },
       ]);
@@ -103,7 +104,7 @@ const updateUserDetails = async function (req, res) {
     }
     if (req.body.lat && req.body.long) {
       userDetails.location = {
-        type: "point",
+        type: "Point",
         coordinates: [parseFloat(req.body.long), parseFloat(req.body.lat)],
       };
     }

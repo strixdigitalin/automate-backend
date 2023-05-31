@@ -63,11 +63,20 @@ const userdata = new mongoose.Schema(
       // coordinates: { type: [Number] },
       coordinates: [],
     },
+    destination: {
+      type: {
+        type: String,
+        default: "Point",
+      },
+      // coordinates: { type: [Number] },
+      coordinates: [],
+    },
   },
 
   { timestamps: true }
 );
 userdata.index({ location: "2dsphere" });
+userdata.index({ destination: "2dsphere" });
 
 // userdata.index({ location_1: "2dsphere" });
 module.exports = new mongoose.model("user", userdata);
