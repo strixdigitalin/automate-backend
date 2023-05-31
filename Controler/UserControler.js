@@ -14,6 +14,7 @@ const getUserDetails = async function (req, res) {
     let readyToTravel = false;
     let travelTo = "";
     let findUserDetails = [];
+    console.log(req.query);
     if (req.query.readyToTravel) readyToTravel = req.query.readyToTravel;
     if (req.query.travelTo) travelTo = req.query.travelTo;
     if (req.query.lat && req.query.long) {
@@ -32,8 +33,8 @@ const getUserDetails = async function (req, res) {
         },
         {
           $match: {
-            readyToTravel: readyToTravel,
-            // travelTo: travelTo,
+            readyToTravel: readyToTravel == "true" ? true : false,
+            //     // travelTo: travelTo,
           },
         },
       ]);
