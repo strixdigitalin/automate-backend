@@ -31,8 +31,8 @@ const getUserDetails = async function (req, res) {
         },
         {
           $match: {
-            readyToTravel: true,
-            travelTo: travelTo,
+            readyToTravel: readyToTravel,
+            // travelTo: travelTo,
           },
         },
       ]);
