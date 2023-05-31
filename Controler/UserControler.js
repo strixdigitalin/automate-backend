@@ -19,7 +19,6 @@ const getUserDetails = async function (req, res) {
     if (req.query.lat && req.query.long) {
       console.log(req.query);
       let location = [parseFloat(req.query.long), parseFloat(req.query.lat)];
-
       findUserDetails = await User.aggregate([
         {
           $geoNear: {
