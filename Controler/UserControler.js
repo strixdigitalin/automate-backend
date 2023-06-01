@@ -159,16 +159,16 @@ const findAutoMate = async function (req, res) {
         parseFloat(req.query.d_lat),
       ];
       findUserDetails = await User.aggregate([
-        // {
-        //   $geoNear: {
-        //     near: { type: "Point", coordinates: location },
-        //     distanceField: "dist.calculated",
-        //     includeLocs: "dist.location",
-        //     spherical: true,
-        //     key: "destination",
-        //     //  maxDistance: 1000,
-        //   },
-        // },
+        {
+          $geoNear: {
+            near: { type: "Point", coordinates: location },
+            distanceField: "dist.calculated",
+            includeLocs: "dist.location",
+            spherical: true,
+            key: "destination",
+            //  maxDistance: 1000,
+          },
+        },
 
         {
           $match: {
