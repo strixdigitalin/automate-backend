@@ -6,6 +6,8 @@ const {
   getUserDetails,
   updateUserDetails,
   deleteUser,
+  findAutoMate,
+  findNearBy,
 } = require("../Controler/UserControler");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -23,6 +25,8 @@ const upload = multer({
 });
 
 router.get("/get", getUserDetails);
+router.get("/automate", findAutoMate);
+router.get("/nearBy", findNearBy);
 router.put(
   "/update/:id",
   upload.fields([{ name: "avatar", maxCount: 1 }]),
