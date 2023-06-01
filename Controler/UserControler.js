@@ -151,9 +151,9 @@ const findAutoMate = async function (req, res) {
     if (req.query.readyToTravel) readyToTravel = req.query.readyToTravel;
     if (req.query.travelTo) travelTo = req.query.travelTo;
     let nearByUsers = req.query.nearByUsers;
-    if (req.query.lat && req.query.long) {
+    if (req.query.d_lat && req.query.d_long) {
       console.log(req.query);
-      let location = [parseFloat(req.query.long), parseFloat(req.query.lat)];
+      // let location = [parseFloat(req.query.long), parseFloat(req.query.lat)];d
       let destination = [
         parseFloat(req.query.d_long),
         parseFloat(req.query.d_lat),
@@ -161,7 +161,7 @@ const findAutoMate = async function (req, res) {
       findUserDetails = await User.aggregate([
         {
           $geoNear: {
-            near: { type: "Point", coordinates: location },
+            near: { type: "Point", coordinates: destination },
             distanceField: "dist.calculated",
             includeLocs: "dist.location",
             spherical: true,
