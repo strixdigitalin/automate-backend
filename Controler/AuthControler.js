@@ -51,7 +51,7 @@ const createUser = async function (req, res) {
     if (!checkMobile) return null;
 
     let user = await User.find({ mobile: req.body.mobile });
-    if (user)
+    if (user.length)
       return SendSuccess(res, "User registered with this mobile number", user);
 
     // const checkEmail = validateEmail(userDetails.email, res);
@@ -85,11 +85,7 @@ const createUser = async function (req, res) {
       },
     });
 
-    return res.status(201).send({
-      status: true,
-      message: "user created successfully!!",
-      data: saveUserInDb,
-    });
+    return SendSuccess(res, "New User registered", saveUserInDb);
   } catch (err) {
     return res.status(500).send({ status: false, error: err.message });
   }
