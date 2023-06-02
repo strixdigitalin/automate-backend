@@ -36,8 +36,12 @@ const userdata = new mongoose.Schema(
     },
 
     password: {
-      type: "String",
+      type: String,
       // require: true,
+    },
+    gender: {
+      type: String,
+      enum: ["MALE", "FEMALE"],
     },
     isEmailVerified: {
       type: Boolean,
