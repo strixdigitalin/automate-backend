@@ -49,6 +49,11 @@ const createUser = async function (req, res) {
     if (isError) return null;
     const checkMobile = validateMobile(userDetails.mobile, res);
     if (!checkMobile) return null;
+
+    let user = await User.find({ mobile: req.body.mobile });
+    if (user)
+      return SendSuccess(res, "User registered with this mobile number", user);
+
     // const checkEmail = validateEmail(userDetails.email, res);
     // if (!checkEmail) return null;
 
