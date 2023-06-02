@@ -204,6 +204,7 @@ const userMobileLogin = async (req, res) => {
     let mobile = req.body.mobile;
     let user = await User.find({ mobile });
     if (user) return SendSuccess(res, "User fetched", user);
+    else return SendFail(res, "No User found");
   } catch (error) {
     console.log(error);
     SendError(res, error);
