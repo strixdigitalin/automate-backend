@@ -18,6 +18,20 @@ const validString = function (value) {
   return true;
 };
 
+const validateField = (fields, res) => {
+  let valid = true;
+  for (const key in fields) {
+    if (Object.hasOwnProperty.call(fields, key)) {
+      const element = fields[key];
+      if (!isValid(element) && valid) {
+        SendFail(res, key + " is required");
+        valid = false;
+      }
+    }
+  }
+  return valid;
+};
+
 const validateMobile = (mobile, res) => {
   if (!/^(\+\d{1,3}[- ]?)?\d{10}$/.test(mobile)) {
     res.status(400).send({
@@ -78,5 +92,6 @@ module.exports = {
   isValidRequestBody,
   validateMobile,
   validString,
+  validateField,
   validatePassWord,
 };

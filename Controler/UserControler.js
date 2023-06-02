@@ -150,7 +150,7 @@ const findAutoMate = async function (req, res) {
     console.log(req.query);
     if (req.query.readyToTravel) readyToTravel = req.query.readyToTravel;
     if (req.query.travelTo) travelTo = req.query.travelTo;
-    let nearByUsers = req.query.nearByUsers;
+
     if (req.query.d_lat && req.query.d_long) {
       console.log(req.query);
       // let location = [parseFloat(req.query.long), parseFloat(req.query.lat)];d
